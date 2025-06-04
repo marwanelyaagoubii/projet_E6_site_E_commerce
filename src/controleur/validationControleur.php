@@ -1,5 +1,5 @@
 <?php
-
+// validation d'un compte 
 function validationControleur($twig, $db) {
     $email = $_GET['email'] ?? null;
     $idgenere = $_GET['idgenere'] ?? null;
