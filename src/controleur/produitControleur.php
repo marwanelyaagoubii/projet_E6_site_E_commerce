@@ -4,7 +4,7 @@ function produitControleur($twig, $db) {
     $form = [];
     $jeu = new Jeu($db);
 
-    // 1. Modifier un produit (via POST)
+    //  Modifier un produit (via POST)
     if (isset($_POST['btModifier'])) {
         $id = $_POST['id'];
         $titre = $_POST['titre'];
@@ -27,7 +27,7 @@ function produitControleur($twig, $db) {
         $form['produit'] = $jeu->selectById($id);
     }
 
-    //  2. Précharger un jeu pour édition
+    //   Précharger un jeu pour édition
     if (isset($_GET['id']) && !isset($_GET['supprimer'])) {
         $id = $_GET['id'];
         $produit = $jeu->selectById($id);
@@ -39,7 +39,7 @@ function produitControleur($twig, $db) {
         }
     }
 
-    //  3. Suppression multiple
+    //   Suppression multiple
     if (isset($_POST['btSupprimer'])) {
         $cocher = $_POST['cocher'] ?? [];
         $etat = true;
@@ -55,7 +55,7 @@ function produitControleur($twig, $db) {
         exit;
     }
 
-    // 4. Suppression individuelle
+    //  Suppression individuelle
     if (isset($_GET['id']) && isset($_GET['supprimer'])) {
         $id = $_GET['id'];
 
@@ -67,12 +67,12 @@ function produitControleur($twig, $db) {
         exit;
     }
 
-    //  5. Afficher message si redirection après suppression
+    //   Afficher message si redirection après suppression
     if (isset($_GET['etat'])) {
         $form['etat'] = $_GET['etat'];
     }
 
-    //  6. Afficher la liste des jeux
+    //   Afficher la liste des jeux
     $liste = $jeu->selectAll();
 
     echo $twig->render('produit.html.twig', ['form' => $form, 'liste' => $liste]);
@@ -83,6 +83,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+// afficher la liste de produit dan sla page produit ADMIN 
 function actionListeProduitPdf($twig, $db) {
     require_once 'C:/wamp64/www/shop-shopp/vendor/autoload.php';
 
