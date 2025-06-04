@@ -1,7 +1,7 @@
 <?php
 function utilisateurModifControleur($twig, $db){
     $form = array();
-
+// modifier un mdp 
     if (isset($_GET['id'])) {
         $utilisateur = new Utilisateur($db);
         $unUtilisateur = $utilisateur->selectById($_GET['id']);
@@ -29,7 +29,7 @@ function utilisateurModifControleur($twig, $db){
                 $form['valide'] = false;
                 $form['message'] = 'Échec de la modification';
             } else {
-                // Vérifie s'il faut modifier le mot de passe
+                // Vérifie si les mdp sont identiques le mot de passe
                 if (!empty($_POST['inputPassword'])) {
                     if ($_POST['inputPassword'] == $_POST['inputPassword2']) {
                         $utilisateur->updateMdp($id, $_POST['inputPassword']);
