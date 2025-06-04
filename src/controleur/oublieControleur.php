@@ -1,6 +1,8 @@
 <?php
+
+// function si un uilisateur oublie son mdp, envoie dun email avc token 
 function oublieControleur($twig, $db) {
-    require_once __DIR__ . '/mailControleur.php'; // ton helper PHPMailer
+    require_once __DIR__ . '/mailControleur.php'; 
 
     $form = [];
 
