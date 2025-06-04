@@ -4,7 +4,7 @@ function produitFicheControleur($twig, $db) {
     $form = [];
     $produits = new Jeu($db);
 
-    // 🔹 Si un produit est ajouté au panier
+    //  Si un produit est ajouté au panier
     if (isset($_POST['btAjoutP']) && isset($_POST['id'])) {
         $form['valideAjout'] = true;
         $unProduit = $produits->selectById($_POST['id']);
@@ -27,7 +27,7 @@ function produitFicheControleur($twig, $db) {
         }
     }
 
-    // 🔹 Si on arrive sur la fiche d’un produit via l’URL
+    // 🔹Si on arrive sur la fiche d’un produit via l’URL
     if (isset($_GET['id'])) {
         $jeu = $produits->selectById($_GET['id']);
         if ($jeu) {
