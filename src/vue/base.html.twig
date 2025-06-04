@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GameVault - Your Gaming Universe</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{% block title %}Titre par défaut{% endblock %}</title>
+    <link rel="stylesheet" href="/shop-shopp/public/css/style.css">
+    </head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="game">GAME</span>
+                <span class="vault">VAULT</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.php?page=acceuil">Accueil</a>                        
+                <a href="index.php?page=jeux"> Nos Jeux</a>
+                <a href="index.php?page=panier" class="btn-panier">
+                🛒 Panier
+                {% if session.panier is defined and session.panier|length > 0 %}
+                    <span class="badge">{{ session.panier|reduce((carry, item) => carry + item, 0) }}</span>
+                {% endif %}
+                </a>
+                 {% if session.login is defined %}
+                <a href="index.php?page=deconnexion">Se déconnecter</a>
+                <a href="index.php?page=profile">{{ session.login }}</a>
+            {% else %}
+                <a href="index.php?page=connexion">Se connecter</a>
+                <a href="index.php?page=inscrire">Inscription</a>  
+            {% endif %}
+            {%if session.login is defined %}
+            {%if session.role == 1 %}
+            <div class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" datatoggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Administration
+            </a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="index.php?page=produit">Produit</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="index.php?page=type">Type</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="index.php?page=utilisateur">Utilisateur</a>
+                            <div class="dropdown">
+                <div class="dropdown-menu">
+                    </div>
+                </div>
+            </div>
+            </li>
+            {% endif %}
+            {% endif %}
+        </div>
+    </header>
+    
+    <main>
+        {% block content %}
+        <!-- Contenu spécifique à chaque page -->
+        {% endblock %}
+    </main>
+
+        <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>A props de GameVault</h4>
+                <p>Votre source de confiance pour les jeux PC.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/about">A propos de </a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connectez vs avec nous</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">Discord</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GameVault.Tout droit réserver</p>
+        </div>
+    </footer>
+</body>
+
+</html>

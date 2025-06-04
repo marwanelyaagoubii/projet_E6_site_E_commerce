@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialisation de mot de passe{% endblock %}
+
+{% block content %}
+<div class="jeu-container">
+  <div class="jeu-form-box">
+    <h1>Réinitialisation du mot de passe</h1>
+
+    {% if form.message is defined %}
+      <p style="color: green;">{{ form.message }}</p>
+    {% elseif form.erreur is defined %}
+      <p style="color: red;">{{ form.erreur }}</p>
+    {% endif %}
+
+    {% if form.message is not defined and form.erreur is not defined %}
+    <form method="post" action="index.php?page=reset&email={{ email }}&token={{ token }}">
+      <div class="jeu-form-group">
+        <label for="newPassword">Nouveau mot de passe :</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+      </div>
+
+      <div class="jeu-form-group">
+        <label for="confirmPassword">Confirmer le mot de passe :</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+      </div>
+
+      <button type="submit" name="btReset" class="jeu-submit-btn">Valider</button>
+    </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

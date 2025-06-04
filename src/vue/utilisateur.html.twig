@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} Jeu de PC{% endblock %}
+
+{% block content %}
+<div class="jeu-container" style="display:flex; gap:2rem; align-items:stretch;">
+<div class="jeu-form-box" style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+<h1>Gerer les utilisateurs</h1>
+
+{% if form.etat is defined %}
+ {% if form.etat == true %}
+ <h1>Suppression réussie</h1>
+ {% else %}
+ <h1 role="alert">Problème d'insertion</h1>
+ {% endif %}
+{% endif %}
+<form action="index.php?page=utilisateur" method="post" enctype="application/x-www-form-urlencoded">
+<table class="table-responsive custom-table-container">
+<table>
+  <table class="jeu-table">
+<thead>
+<tr>
+<th scope="col">Email</th>
+<th scope="col">Nom</th>
+<th scope="col">Prénom</th>
+<th scope="col">Rôle</th>
+<th scope="col">Modifier</th>
+<th scope="col">Supprimer</th>
+<th scope="col">selectionner</th>
+
+
+
+</tr>
+</thead>
+<tbody>
+{% for u in liste %}
+<tr><td>{{u.email}}</td>
+ <td>{{u.nom}}</td>
+ <td>{{u.prenom}}</td>
+ <td>{{u.libellerole}}</td>
+ <td><a href="index.php?page=utilisateurModif&id={{u.id}}" class="action-link">Modifier</a></td>
+  <td><a href="index.php?page=utilisateur&id={{u.id}}" class="action-link">Supprimer</a></td>
+   <td><input type="checkbox" name="cocher[]" id="cocher[]" value="{{u.id}}" /></td>
+
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+  </table>
+</div>
+</div>
+</div>
+{% endblock %}
+
+

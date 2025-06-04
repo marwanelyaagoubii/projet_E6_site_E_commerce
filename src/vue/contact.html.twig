@@ -1,0 +1,33 @@
+ {#
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<form class="contact-form" method="post" action="index.php?page=contact">
+    <div class="container-inscription">
+        <div class="register-box">
+            <h1>Contactez-nous</h1>
+                <div class="form-group">
+                    <input type="text" id="inputName" name="inputName" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="inputEmail" name="inputEmail" placeholder="Votre Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+                </div>
+                <button type="submit" name="btnEnvoier" class="register-btn">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+    {% if form.valide is defined %}
+    {% if form.valide %}
+        <p class="success">{{ form.message }}</p>
+    {% else %}
+        <p class="error">{{ form.message }}</p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}   This will be a comment #}

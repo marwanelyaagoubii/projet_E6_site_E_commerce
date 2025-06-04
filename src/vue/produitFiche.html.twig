@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche Produit{% endblock %}
+
+{% block content %}
+  {% if form.valideAjout is defined %}
+    {% if form.valideAjout %}
+      <h3 class="text-success">{{ form.message }}</h3>
+    {% else %}
+      <h3 class="text-danger">{{ form.message }}</h3>
+    {% endif %}
+  {% endif %}
+
+  {% if form.produit is defined %}
+  <h1>{{ form.produit.titre }}</h1>
+  <p>Plateforme : {{ form.produit.plateforme }}</p>
+  <p>Genre : {{ form.produit.genre }}</p>
+  <p>Prix : {{ form.produit.prix }} €</p>
+    <img src="/shop-shopp/public/images/{{ form.produit.photo }}" alt="{{ form.produit.titre }}" style="width:200px; height:auto;">
+
+<form method="POST" action="index.php?page=produitFiche" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{ form.produit.id }}">
+    <button type="submit" name="btAjoutP">🛒 Ajouter au panier</button>
+
+  </form>
+{% else %}
+  <p>Produit introuvable.</p>
+{% endif %}
+
+{% endblock %}

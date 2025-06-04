@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Listes des types{% endblock %}
+
+{% block content %}
+<div class="jeu-container" style="display:flex; gap:2rem; align-items:stretch;">
+<h1>Listes des types</h1>
+
+  <div class="jeu-section-liste">
+<form action="index.php?page=typeModif" method="post">
+    <input type="hidden" name="id" value="{{ form.type.id }}">
+</form>
+
+    <h2>Liste des jeux</h2>
+    <table class="jeu-table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>libelle</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in liste %}
+        <tr>
+          <td>{{ t.id}}</td>
+          <td>{{ t.libelle }}</td>
+          <td style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="index.php?page=typeModif&id={{ t.id }}" class="btn btn-sm btn-secondary">Modifier</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}

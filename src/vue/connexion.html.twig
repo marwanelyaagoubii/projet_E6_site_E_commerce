@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+
+<h1>Connectez-vous sur GameVerse</h1>
+<div class="container">
+    <div class="login-box">
+        <h1 class="titre-connexion">GameVerse</h1>
+
+        {% if form.message is defined %}
+            <div class="alert {{ form.valide is defined and not form.valide ? 'alert-danger' : 'alert-success' }}">
+                {{ form.message }}
+            </div>
+        {% endif %}
+
+        <form class="login-form" method="POST" action="index.php?page=connexion">
+            <div class="form-group">
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" placeholder="Mot de passe" required>
+            </div>
+            <button type="submit" class="login-btn" name="btConnecter">Se connecter</button>
+        </form>
+
+        <div class="additional-links">
+            <a href="index.php?page=oublie">Mot de passe oublié?</a>
+            <a href="index.php?page=inscrire">Créer un compte</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

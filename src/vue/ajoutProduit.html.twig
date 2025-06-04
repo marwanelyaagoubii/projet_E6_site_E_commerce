@@ -1,0 +1,42 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter des jeux{% endblock %}
+
+{% block content %}
+
+<div class="jeu-container" style="display:flex; gap:2rem; align-items:stretch;">
+
+  <!-- FORMULAIRE D'AJOUT -->
+  <div class="jeu-form-box" style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+    <h1>Ajouter un jeu PC</h1>
+<form method="POST" action="index.php?page=ajouterJeu" enctype="multipart/form-data">
+        <label for="titre">Titre</label>
+        <input type="text" id="titre" name="titre" placeholder="Red Dead Redemption II;">
+      </div>
+      <div class="jeu-form-group">
+        <label for="plateforme">Plateforme</label>
+        <input type="text" id="plateforme" name="plateforme" placeholder="PC">
+      </div>
+      <div class="jeu-form-group">
+        <label for="prix">Prix</label>
+        <input type="number" step="0.01" id="prix" name="prix" placeholder="39.99">
+      </div>
+      <div class="jeu-form-group">
+        <label for="quantites">Quantités</label>
+        <input type="number" id="quantites" name="quantites" placeholder="100" >
+      </div>
+      <div class="jeu-form-group">
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" name="genre" placeholder="Stratégie, FPS…" >
+      </div>
+      <div class="jeu-form-group">
+      <label for="photo" class="form-control">Photo :</label>
+  <input type="file" name="photo" id="photo">
+
+      </div>
+      <button type="submit" name="btAjouter" class="jeu-submit-btn">Ajouter le jeu</button>
+    </form>
+  </div>
+
+  {% endblock %}

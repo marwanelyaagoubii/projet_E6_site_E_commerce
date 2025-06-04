@@ -1,0 +1,29 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des jeux{% endblock %}
+
+{% block content %}
+
+<h1>Liste des jeux</h1>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Plateforme</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for j in liste %}
+        <tr>
+            <td>{{ j.titre }}</td>
+            <td>{{ j.plateforme }}</td>
+            <td>{{ j.prix }} €</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Bienvenue sur GameVault</h1>
+                <p></p>
+                <div class="hero-buttons">
+                    <a href="index.php?page=jeux" class="btn-add-cart-acceuil">Achetez-maitenant</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-games">
+            <h2>Meilleurs Vente</h2>
+            <div class="game-grid">
+                <article class="game-card">
+                    <div class="game-image">
+                        <span class="platform">PC</span>
+                        <img src="https://m.media-amazon.com/images/I/612r+1HnT1L.jpg" alt="Game 1">
+                    </div>
+                    <div class="game-info">
+                        <h3>Red Dead Redemption II</h3>
+                        <div class="platform-icons">
+                            <span class="ps5">PC</span>
+                        </div>
+                        <p class="price">$49.99 €</p>
+                    <a href="index.php?page=jeux&q=red+dead&tri=" class="btn-add-cart">Voir plus</a>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-image">
+                        <span class="platform">PC</span>
+                        <img src="https://image.jeuxvideo.com/medias-sm/171018/1710175367-5672-jaquette-avant.jpg" alt="Game 2">
+                    </div>
+                    <div class="game-info">
+                        <h3>Ghost Of Tsuchima</h3>
+                        <div class="platform-icons">
+                            <span class="pc">PC</span>
+                        </div>
+                        <p class="price">59.99 €</p>
+                    <a href="index.php?page=jeux&q=Ghost&tri" class="btn-add-cart">Voir plus</a>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-image">
+                          <span class="platform">PC</span>
+                        <img src="https://www.naughtydogmag.fr/wp-content/uploads/2022/09/jaquette-the-last-of-us-part-i-uai-258x323.jpg" alt="Game 3">
+                    </div>
+                    <div class="game-info">
+                        <h3>The Last of Us Part I</h3>
+                        <div class="platform-icons">
+                            <span class="ps4">PC</span>
+                        </div>
+                        <p class="price">59.99 €</p>
+                    <a href="index.php?page=jeux&q=the+last+of+us&tri=" class="btn-add-cart">Voir plus</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+
+{% endblock %}

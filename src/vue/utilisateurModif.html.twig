@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+  {{ parent() }} Modifier un utilisateur
+{% endblock %}
+
+{% block content %}
+  {% if form.utilisateur is defined %}
+    {% if form.utilisateur != null %}
+      <div class="jeu-container" style="display:flex; gap:2rem; align-items:stretch;">
+        <div class="jeu-form-box" style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+          <form class="form-signin" action="index.php?page=utilisateurModif" method="post" enctype="application/x-www-form-urlencoded">
+              <h1 class="h3 mb-3 font-weight-normal">Modifier un utilisateur</h1>
+            <div class="jeu-form-group">
+              <label for="email" >Email:</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ form.utilisateur.email }}" required>
+            </div>
+            <div class="jeu-form-group">
+              <label for="inputPassword">Modifier le mot de passe:</label>
+              <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Modifier le mot de passe" required>
+             </div>
+            <div class="jeu-form-group">
+              <label for="inputPassword2" >Confirmer le mot de passe à modifier:</label>
+              <input type="password" id="inputPassword2" name="inputPassword2" class="form-control" placeholder="Confirmation mot de passe" required>
+            </div>
+            <div class="jeu-form-group">
+              <label for="nom" >Nom:</label>
+              <input type="text" id="nom" name="nom" class="form-control" placeholder="Nom" value="{{ form.utilisateur.nom }}" required>
+              </div>
+                            <div class="jeu-form-group">
+              <label for="prenom" >Prénom:</label>
+              <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Prénom" value="{{ form.utilisateur.prenom }}" required>
+              <select class="form-control" name="role">
+                {% for r in form.roles %}
+                  <option value="{{ r.id }}" {% if r.id == form.utilisateur.idRole %}selected{% endif %}>{{ r.libelle }}</option>
+                {% endfor %}
+                </div>
+              </select>
+
+              <input type="hidden" name="id" value="{{ form.utilisateur.id }}" />
+              <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier" class="jeu-submit-btn">Modifier</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    {% else %}
+      {% if form.valide == true %}
+        <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+        <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=utilisateur">Retourner sur la liste des utilisateurs</a></h1>
+      {% else %}
+        <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+        <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=utilisateur">Retourner sur la liste des utilisateurs</a></h1>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endblock %}

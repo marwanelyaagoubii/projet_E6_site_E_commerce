@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des jeux{% endblock %}
+
+{% block content %}
+<div class="jeu-container" style="display:flex; gap:2rem; align-items:stretch;">
+<div class="jeu-section-liste">
+  <h2>Liste des jeux</h2>
+  <table class="jeu-table">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Plateforme</th>
+        <th>Prix</th>
+        <th>Quantités</th>
+        <th>Genre</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for j in liste %}
+      <tr>
+        <td>{{ j.titre }}</td>
+        <td>{{ j.plateforme }}</td>
+        <td>{{ j.prix }} €</td>
+        <td>{{ j.quantites }}</td>
+        <td>{{ j.genre }}</td>
+        <td>
+<img src="/shop-shopp/public/images/{{ j.photo }}" alt="{{ j.titre }}" style="width:200px; height:auto;">
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6">Aucun jeu enregistré.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock %}

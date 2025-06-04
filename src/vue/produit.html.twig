@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des jeux{% endblock %}
+
+{% block content %}
+
+<div class="jeu-container" style="display:flex; gap:2rem; align-items:stretch;">
+
+  {# ➤ Partie GAUCHE : liste des jeux #}
+  <div class="jeu-section-liste">
+    <h2>Liste des jeux</h2>
+    <table class="jeu-table">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Plateforme</th>
+          <th>Prix</th>
+          <th>Quantités</th>
+          <th>Genre</th>
+          <th>Image</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for j in liste %}
+        <tr>
+          <td>{{ j.titre }}</td>
+          <td>{{ j.plateforme }}</td>
+          <td>{{ j.prix }} €</td>
+          <td>{{ j.quantites }}</td>
+          <td>{{ j.genre }}</td>
+          <td>
+            <img src="/shop-shopp/public/images/{{ j.photo }}" alt="{{ j.titre }}" style="width:200px; height:auto;">
+          </td>
+          <td style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="index.php?page=produitModif&id={{ j.id }}" name="btModifier" class="btn btn-sm btn-secondary">Modifier</a>
+            <a href="index.php?page=produit&id={{ j.id }}&supprimer=1" name="supprimer" class="btn btn-sm btn-secondary" onclick="return confirm('Supprimer ce jeu ?');">Supprimer</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {# ➤ Boutons placés en bas du tableau, en dehors de la boucle #}
+    <div style="margin-top: 20px;">
+      <a href="index.php?page=ajoutProduit" class="btn btn-sm btn-secondary"> Ajouter un jeu</a>
+      <a href="index.php?page=listeproduitpdf" target="_blank" class="btn btn-sm btn-primary">
+        📄 Télécharger la liste des jeux en PDF
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

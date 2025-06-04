@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Nos jeux
+{% endblock %}
+
+{% block content %}
+	<h1 class="text-center text-3xl font-bold text-purple-400 mt-8 mb-6">Bienvenue dans notre boutique</h1>
+
+	<form method="get" action="index.php" enctype="multipart/form-data" style="margin: 2rem 0 2rem 0; display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; justify-content: flex-start; max-width: 1000px;">
+
+		<input type="hidden" name="page" value="jeux">
+
+		<div style="display: flex; flex-direction: column;">
+			<label for="q" style="color: #ccc; font-size: 0.9rem; margin-bottom: 0.3rem;">🔎 Rechercher un jeu</label>
+			<input type="text" id="q" name="q" placeholder="Nom du jeu..." value="{{ q|default('') }}" style="background-color: #1f1f38; color: #fff; border: 1px solid #444; padding: 0.5rem 0.75rem; border-radius: 8px; min-width: 200px;">
+		</div>
+
+		<div style="display: flex; flex-direction: column;">
+			<label for="tri" style="color: #ccc; font-size: 0.9rem; margin-bottom: 0.3rem;">Trier par</label>
+			<select id="tri" name="tri" style="background-color: #1f1f38; color: #fff; border: 1px solid #444; padding: 0.5rem 0.75rem; border-radius: 8px;">
+				<option value="">-- Aucun --</option>
+				<option value="prix_asc" {% if tri == 'prix_asc' %} selected {% endif %}>Prix croissant</option>
+				<option value="prix_desc" {% if tri == 'prix_desc' %} selected {% endif %}>Prix décroissant</option>
+			</select>
+		</div>
+
+		<div>
+			<button type="submit" style="margin-top: 1.5rem; background: linear-gradient(135deg, #8a2be2, #c700c7); color: white; border: none; padding: 0.5rem 1.25rem; border-radius: 8px; font-weight: 600; cursor: pointer;">
+				🔍 Rechercher
+			</button>
+		</div>
+	</form>
+
+	<div class="game-grid-jeux">
+		{% for j in liste %}
+			<div class="game-card-jeux">
+				<div >
+					<img src="/shop-shopp/public/images/{{ j.photo }}" alt="{{ j.titre }}">
+				</div>
+
+				<div class="game-info-jeux">
+					<h3>{{ j.titre }}</h3>
+					<p>
+						<strong>Plateforme :</strong>
+						{{ j.plateforme }}</p>
+					<p>
+						<strong>Genre :</strong>
+						{{ j.genre }}</p>
+					<p>
+						<strong>Prix :</strong>
+						{{ j.prix }}
+						€</p>
+					<a href="index.php?page=panier&add={{ j.id }}" class="btn-panier-jeux">Ajouter au panier</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

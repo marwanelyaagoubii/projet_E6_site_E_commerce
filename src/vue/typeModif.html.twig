@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Modifier un type{% endblock %}
+
+{% block content %}
+<h1>Modifier un type</h1>
+
+  <div class="jeu-section-form">
+    {% if form.valide is defined %}
+      {% if form.valide %}
+        <div class="alert alert-success">{{ form.message }}</div>
+      {% else %}
+        <div class="alert alert-danger">{{ form.message }}</div>
+      {% endif %}
+    {% endif %}
+
+    {% if form.type is defined %}
+    <form method="post" action="index.php?page=typeModif" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{{ form.type.id }}">
+
+      <div class="form-group">
+        <label for="titre">libelle :</label>
+        <input type="text" name="libelle" id="libelle" value="{{ form.type.libelle }}" class="form-control" required>
+      </div>
+
+      <button type="submit" name="btModifier" class="btn btn-primary">Modifier</button>
+    </form>
+    {% endif %}
+  </div>
+    {% if form.type is defined %}
+    <table class="jeu-table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ form.type.id }}</td>
+          <td>{{ form.type.libelle }}</td>
+        </tr>
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

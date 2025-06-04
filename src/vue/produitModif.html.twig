@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un jeu{% endblock %}
+
+{% block content %}
+<div class="jeu-container" style="display:flex; gap:2rem; align-items:stretch;">
+
+  <!-- FORMULAIRE DE MODIFICATION -->
+  <div class="jeu-section-form">
+    <h2>Modifier un jeu</h2>
+
+    {% if form.valide is defined %}
+      {% if form.valide %}
+        <div class="alert alert-success">{{ form.message }}</div>
+      {% else %}
+        <div class="alert alert-danger">{{ form.message }}</div>
+      {% endif %}
+    {% endif %}
+
+    {% if form.produit is defined %}
+    <form method="post" action="index.php?page=produitModif" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{{ form.produit.id }}">
+
+      <div class="form-group">
+        <label for="titre">Titre :</label>
+        <input type="text" name="titre" id="titre" value="{{ form.produit.titre }}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="plateforme">Plateforme :</label>
+        <input type="text" name="plateforme" id="plateforme" value="{{ form.produit.plateforme }}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="prix">Prix (€) :</label>
+        <input type="number" step="0.01" name="prix" id="prix" value="{{ form.produit.prix }}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="quantites">Quantités :</label>
+        <input type="number" name="quantites" id="quantites" value="{{ form.produit.quantites }}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="genre">Genre :</label>
+        <input type="text" name="genre" id="genre" value="{{ form.produit.genre }}" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label>Photo actuelle :</label><br>
+        <img src="/shop-shopp/public/images/{{ form.produit.photo }}" alt="{{ form.produit.titre }}" style="width:200px; height:auto;">
+      </div>
+
+      <div class="form-group">
+        <label for="photo">Nouvelle photo :</label>
+        <input type="file" name="photo" id="photo" class="form-control">
+      </div>
+
+      <button type="submit" name="btModifier" class="btn btn-primary">Modifier</button>
+    </form>
+    {% else %}
+      <p class="alert alert-warning">Produit introuvable.</p>
+    {% endif %}
+  </div>
+
+  <!-- APERÇU -->
+  <div class="jeu-section-liste">
+    <h2>Aperçu du jeu</h2>
+    {% if form.produit is defined %}
+    <table class="jeu-table">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Plateforme</th>
+          <th>Prix</th>
+          <th>Quantités</th>
+          <th>Genre</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ form.produit.titre }}</td>
+          <td>{{ form.produit.plateforme }}</td>
+          <td>{{ form.produit.prix }} €</td>
+          <td>{{ form.produit.quantites }}</td>
+          <td>{{ form.produit.genre }}</td>
+          <td>
+            <img src="/shop-shopp/public/images/{{ form.produit.photo }}" alt="{{ form.produit.titre }}" style="width:200px; height:auto;">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}
