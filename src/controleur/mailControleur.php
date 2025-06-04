@@ -8,7 +8,7 @@ require_once 'C:/wamp64/www/shop-shopp/vendor/autoload.php';
 
 function envoyerMailValidation($toEmail, $idgenere) {
     $mail = new PHPMailer(true);
-
+    // Parametre smtp afin d'envoier l'email de validation du compte
     try {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
@@ -44,7 +44,7 @@ function envoyerMailValidation($toEmail, $idgenere) {
 
 function envoyerMailReset($toEmail, $token) {
     $mail = new PHPMailer(true);
-
+// parametre stp afin d'envoier un email de recuperation de mdp 
     try {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
