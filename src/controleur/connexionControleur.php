@@ -2,7 +2,7 @@
 
 function connexionControleur($twig, $db) {
     $form = [];
-
+    // si les 2 ont des valeurs ( email et mdp)
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
