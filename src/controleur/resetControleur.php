@@ -1,5 +1,6 @@
 <?php
 
+// reset du mdp oublie avc envoie d'email et token 
 function resetControleur($twig, $db) {
     $form = [];
     $email = $_GET['email'] ?? null;
