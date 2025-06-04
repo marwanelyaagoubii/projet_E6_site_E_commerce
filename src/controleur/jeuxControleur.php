@@ -1,4 +1,5 @@
 <?php
+// page pour la barre de recheche et le trie dans le catalogue
 function jeuxControleur($twig, $db) {
     $jeu = new Jeu($db);
     $q = $_GET['q'] ?? '';
