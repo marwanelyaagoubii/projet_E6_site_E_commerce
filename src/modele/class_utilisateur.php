@@ -17,6 +17,7 @@ class Utilisateur {
         $this->delete = $db->prepare("DELETE FROM utilisateur WHERE id = :id");
     }
 
+    // inseret des données pr les envoyer a la bdd pour un utilisateur 
     public function insert($email, $mdp, $role, $nom, $prenom, $valider, $idgenere) {
         $sql = "INSERT INTO utilisateur (email, password, idRole, nom, prenom, valider, idgenere)
                 VALUES (:email, :password, :role, :nom, :prenom, :valider, :idgenere)";
@@ -31,6 +32,7 @@ class Utilisateur {
         return $stmt->execute();
     }
 
+        //fucntion pr se connecter
     public function connect($email) {
         $this->connect->execute([':email' => $email]);
         if ($this->connect->errorCode() != 0) {
@@ -39,6 +41,7 @@ class Utilisateur {
         return $this->connect->fetch();
     }
 
+        // verifier si l'email existe bien ds la bdd
     public function emailExiste($email) {
         $sql = "SELECT COUNT(*) FROM utilisateur WHERE email = ?";
         $stmt = $this->db->prepare($sql);
@@ -46,6 +49,7 @@ class Utilisateur {
         return $stmt->fetchColumn() > 0;
     }
 
+        // afficher les champ
     public function select() {
         $this->select->execute();
         if ($this->select->errorCode() != 0) {
@@ -54,6 +58,7 @@ class Utilisateur {
         return $this->select->fetchAll();
     }
 
+        // l'id dun utilisateur
     public function selectById($id) {
         $this->selectById->execute([':id' => $id]);
         if ($this->selectById->errorCode() != 0) {
@@ -62,6 +67,7 @@ class Utilisateur {
         return $this->selectById->fetch();
     }
 
+    // modifier un champ de l'utilisateur de la bdd
     public function update($id, $email, $nom, $prenom, $role) {
         $sql = "UPDATE utilisateur SET email = :email, nom = :nom, prenom = :prenom, idRole = :role WHERE id = :id";
         $stmt = $this->db->prepare($sql);
@@ -73,6 +79,7 @@ class Utilisateur {
         return $stmt->execute();
     }
 
+    // modifier un mdp
     public function updateMdp($id, $password) {
         $query = "UPDATE utilisateur SET password = :password WHERE id = :id";
         $stmt = $this->db->prepare($query);
@@ -81,6 +88,7 @@ class Utilisateur {
         return $stmt->execute();
     }
 
+    // supprimer l'id grace a l'id
     public function delete($id) {
         $this->delete->execute([':id' => $id]);
         if ($this->delete->errorCode() != 0) {
@@ -90,6 +98,7 @@ class Utilisateur {
         return true;
     }
 
+    // selectionner un utili par l'email 
     public function selectByEmail($email) {
         $sql = "SELECT * FROM utilisateur WHERE email = :email";
         $stmt = $this->db->prepare($sql);
@@ -98,6 +107,8 @@ class Utilisateur {
         return $stmt->rowCount() > 0 ? $stmt->fetch() : null;
     }
 
+
+    // valider un compte pr se connecter
     public function validerCompte($email) {
         $sql = "UPDATE utilisateur SET valider = 1 WHERE email = :email";
         $stmt = $this->db->prepare($sql);
@@ -105,6 +116,7 @@ class Utilisateur {
         return $stmt->execute();
     }
 
+    // tokern envoier au concerné
     public function setResetToken($email, $token, $time) {
         $sql = "UPDATE utilisateur SET reset_token = :token, reset_time = :time WHERE email = :email";
         $stmt = $this->db->prepare($sql);
@@ -114,6 +126,7 @@ class Utilisateur {
         return $stmt->execute();
     }
 
+    // refaire son mdp 
     public function resetPassword($email, $newHash) {
         $sql = "UPDATE utilisateur SET password = :password, reset_token = NULL, reset_time = NULL WHERE email = :email";
         $stmt = $this->db->prepare($sql);
