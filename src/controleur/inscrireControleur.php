@@ -1,5 +1,6 @@
 <?php
 
+// function pr verifier un mdp securiser 
     function verifierMdp($mdp) {
     $nb1 = 0; $nb2 = 0; $nb3 = 0; $nb4 = 0;
     for ($i = 0; $i < strlen($mdp); $i++) { // Boucle test chaque caractere du mdp 
@@ -9,15 +10,16 @@
         elseif (is_numeric($c)) $nb3++; // cchiffre
         elseif (preg_match('/[^\w\d\s]/', $c)) $nb4++; // caractére special
     }
-    return (strlen($mdp) >= 12 && $nb1 >= 1 && $nb2 >= 4 && $nb3 >= 3 && $nb4 >= 1);
+    return (strlen($mdp) >= 12 && $nb1 >= 1 && $nb2 >= 4 && $nb3 >= 3 && $nb4 >= 1); // 12 caractere, 4 minuscule, 1 mauscule, 3 chiffre, 1 caractere special
 }
+
 
 
 function inscrireControleur($twig, $db) {
 require_once __DIR__ . '/mailControleur.php';
 
     $form = [];
-
+    // si bouton inscrire existe
     if (isset($_POST['btInscrire'])) {
         $inputNom = $_POST['inputNom'] ?? null;
         $inputPrenom = $_POST['inputPrenom'] ?? null;
